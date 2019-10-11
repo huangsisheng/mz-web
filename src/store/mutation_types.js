@@ -36,3 +36,6 @@ export const TOTAL_PRICE = 'TOTAL_PRICE'
 export const CHECKED = 'CHECKED'
 export const DELETE_PROD = 'DELETE_PROD'
 
+// city
+export const SELECT_CITY = 'SELECT_CITY'
+

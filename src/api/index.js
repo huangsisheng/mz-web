@@ -8,3 +8,9 @@ export const gateway = () => {
 export const nowPlaying = () => {
     return http.get('/movie/nowPlaying')
 }
+export const comingSoon = () => {
+    return http.get('/movie/comingSoon')
+}
+export const filmsDetails = () => {
+    return http.get('/movie/filmsDetails')
+}

@@ -28,7 +28,7 @@ const router = new Router({
                     path: 'nowPlaying',
                     component: _import('films/nowPlaying'),
                     meta:{
-                        title:'正在热映',
+                        title:'电影',
                         showtabbar:true,
                         keepAlive:false,
                         // requireAuth: true, //登陆权限
@@ -40,7 +40,7 @@ const router = new Router({
                     path: 'comingSoon',
                     component: _import('films/comingSoon'),
                     meta: {
-                        title: '即将上映',
+                        title: '电影',
                         showtabbar: true,
                         keepAlive: false,
                         // requireAuth: true, //登陆权限
@@ -49,6 +49,17 @@ const router = new Router({
                 }
 
             ]
+        },
+        {
+            name: 'fDetails',
+            path: '/films/fDetails',
+            component: _import('films/fDetails'),
+            meta: {
+                title: '电影详情',
+                showtabbar: false,
+                keepAlive: false,
+                // requireAuth: true, //登陆权限
+            }
         },
         {
             name: 'cinemas',

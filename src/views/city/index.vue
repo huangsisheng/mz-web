@@ -18,13 +18,13 @@
         </dl>
         <dl class="r-city hot-city">
           <dt class="r-title">热门城市</dt>
-          <dd v-for="(item,index) in hotCity" :key="index">{{item.name}}</dd>
+          <dd v-for="(item,index) in hotCity" :key="index" @click="selectCity(item)">{{item.name}}</dd>
         </dl>
       </div>
       <van-index-bar>
         <div v-for="(item,index) in city" :key="index">
           <van-index-anchor :index="item.initial" />
-          <van-cell v-for="(city,cndex) in item.citys" :key="cndex" :title="city.name" />
+          <van-cell v-for="(city,cndex) in item.citys" :key="cndex" :title="city.name" @click="selectCity(city)" />
         </div>
       </van-index-bar>
     </section>
@@ -39,7 +39,7 @@
   </section>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState,mapActions } from "vuex";
 export default {
   components: {},
   data() {
@@ -75,6 +75,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['changeCity']),
     onClickLeft() {
       this.$router.go(-1);
     },
@@ -86,6 +87,10 @@ export default {
     },
     onBlur(){
         this.searchResult = false;
+    },
+    selectCity(city){
+        this.changeCity(city)
+        this.$router.go(-1)
     }  
   }
 };

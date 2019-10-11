@@ -48,7 +48,9 @@ export default {
     methods:{
         selectItem(index){
             this.active = index
-
+            if(index === 0){
+                this.$bus.$emit('changePage')
+            }
         }
     },
 }

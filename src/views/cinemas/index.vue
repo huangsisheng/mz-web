@@ -1,12 +1,24 @@
 <template>
-    <section class=""></section>
+    <section class="">
+        <Nav :city='cityName'></Nav>
+    </section>
 </template>
 <script>
+import Nav from "components/nav";
 export default {
-     components:{},
+    components:{Nav},
     data () {
         return {
+            cityName:{
+                name:''
+            }
         };
+    },
+    created(){
+        this.$bus.$on('selectCity',(res) => {
+            this.$set(this.cityName,'name',res.city.name)
+            console.log(this.cityName)
+        })
     },
     methods:{},
 }

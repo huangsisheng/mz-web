@@ -1,9 +1,9 @@
 <template>
-    <section class="">
+    <section class="now-playing">
         <van-list
             v-model="loading"
             :finished="finished"
-            finished-text="没有更多了"
+            finished-text="没有电影咯~"
             @load="onLoad"
             >
             <van-cell
@@ -11,11 +11,12 @@
                 :key="item.filmId"
             >
                 <van-card
+                    @click="toFDetails(item)"
                     :thumb="item.poster"
                     >
                     <div slot="desc" class="cardRight">
                         <div>
-                            <p>{{item.name}}</p>
+                            <p class="title">{{item.name}}<span class="type">{{item.filmType.name}}</span></p>
                             <p v-if="item.grade">观众评分：<span>{{item.grade}}</span>分</p>
                             <div v-if="item.actors">
                                 <p>主演：<span v-for="(actor,index) in item.actors" :key="index">{{actor.name}} </span></p>
@@ -28,7 +29,6 @@
                     </div>
                 </van-card>
             </van-cell>
-
         </van-list>
     </section>
 </template>
@@ -47,6 +47,10 @@ export default {
     async getNowPlaying(){
         const {data} = await nowPlaying()
         this.filmsList = data.films
+        this.loading = false;
+        if (this.filmsList.length >= 20) {
+          this.finished = true;
+        }
     },
     onLoad() {
       // 异步更新数据
@@ -63,6 +67,11 @@ export default {
           this.finished = true;
         } */
       }, 500);
+    },
+    toFDetails(item){
+        this.$router.push({
+            path:'/films/fDetails'
+        })
     }
   }
 }
@@ -77,9 +86,22 @@ export default {
     display flex
     align-items center
     justify-content space-between
+    .title
+        color #191a1b
+        font-size 16px
+    .type
+        margin-left 4px
+        opacity .3
+        background grey 
+        color #d2d6dc
+        font-size 9px
+        padding 0 2px
+        border-radius 2px
 
 .van-button--default
     border 1px solid #ff5f16
     span
         color #ff5f16
+
+
 </style>

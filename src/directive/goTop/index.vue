@@ -18,20 +18,19 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-@import '../../assets/css/index'
     .fade-enter-active,
     .fade-leave
         opacity 1
-        transition all 0.5s liner cubic-bezier(1.0, 0.5, 0.8, 1.0)
+        transition all 0.8s liner cubic-bezier(1.0, 0.5, 0.8, 1.0)
     .fade-enter,
     .fade-leave-active
         opacity 0
-        transition all 0.5s liner cubic-bezier(1.0, 0.5, 0.8, 1.0)
+        transition all 0.8s liner cubic-bezier(1.0, 0.5, 0.8, 1.0)
 
     .btn
-        wh(40,40)
+        wh(30,30)
         position fixed
-        bottom 50px
+        bottom 100px
         right 10px
         >img
             width 100%

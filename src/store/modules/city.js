@@ -1,9 +1,16 @@
+import * as types from "../mutation_types";
 import { gateway } from "api"
 const city = {
     state:{
         city:[],
         hotCity:[],
-        allcitys:[]
+        allcitys:[],
+        selectCityObj:{}
+    },
+    mutations:{
+        [types.SELECT_CITY](state,cityObj){
+            state.selectCityObj = cityObj
+        }
     },
     actions:{
         async gateway(state){
@@ -33,6 +40,9 @@ const city = {
                 state.state.city = newArr
                 state.state.allcitys = data.cities
             }
+        },
+        changeCity({ commit }, cityObj){
+            commit('SELECT_CITY', cityObj)
         }
     }
 }

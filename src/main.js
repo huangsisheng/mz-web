@@ -13,6 +13,9 @@ import 'amfe-flexible'
 import { directiveFun } from "directive"
 directiveFun()
 
+const VueEventBus = require('vue-event-bus')
+Vue.use(VueEventBus)
+
 import Vant from 'vant'
 import 'vant/lib/index.css'
 
