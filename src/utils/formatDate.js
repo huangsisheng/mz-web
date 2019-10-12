@@ -44,5 +44,5 @@ export const changeDate = function (str) {
     if (minute < 10) {
         minute = `0${minute}`
     }
-    return `${year}/${month}/${day} ${houre}:${minute}`
+    return `${year}-${month}-${day}`
 }

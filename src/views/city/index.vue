@@ -5,7 +5,7 @@
         <van-icon name="cross" slot="left" />
       </van-nav-bar>
       <form action="/">
-        <van-search v-model="cityName" placeholder="输入城市名或拼音" show-action @input="onInput" @blur="onBlur">
+        <van-search v-model="cityName" placeholder="输入城市名或拼音" show-action @input="onInput">
           <div slot="action" @click="onCancel">取消</div>
         </van-search>
       </form>
@@ -30,7 +30,7 @@
     </section>
     <!-- 搜索后的列表 -->
     <section v-if="searchResult" class="c-list result-list">
-      <van-cell v-for="item in resultList" :key="item.cityId" :value="item.name" />
+      <van-cell v-for="item in resultList" :key="item.cityId" :value="item.name" @click="selectCity(item)"/>
       <div v-if="!resultList.length" class="empty-result">
         <img src="../../assets/images/not_city.png" alt />
         <p>没有找到匹配的城市</p>
@@ -84,9 +84,6 @@ export default {
     },
     onCancel() {
       this.searchResult = false;
-    },
-    onBlur(){
-        this.searchResult = false;
     },
     selectCity(city){
         this.changeCity(city)

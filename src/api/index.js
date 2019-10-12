@@ -14,3 +14,9 @@ export const comingSoon = () => {
 export const filmsDetails = () => {
     return http.get('/movie/filmsDetails')
 }
+
+
+
+export const cinemas = () => {
+    return http.get('/cinemas')
+}

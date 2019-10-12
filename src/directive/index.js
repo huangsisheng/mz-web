@@ -1,15 +1,11 @@
 import  Vue from "vue";
 
-export const directiveFun = () => {
+const globalDirective = () => {
     Vue.directive('scroll-show', {
         inserted(el, binding) {
             let scope = binding.arg || '200';
             window.addEventListener('scroll', function (e) {
-                if (this.scrollY > Number(scope)) {
-                    binding.value.value = true;
-                } else {
-                    binding.value.value = false;
-                }
+                binding.value.value = this.scrollY > Number(scope) ? true : false
             })
         }
     })
@@ -32,3 +28,4 @@ export const directiveFun = () => {
         }
     })
 }
+export default globalDirective

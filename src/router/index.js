@@ -70,7 +70,6 @@ const router = new Router({
                 showtabbar: true,
                 keepAlive: false,
                 // requireAuth: true, //登陆权限
-
             }
         },
         {
@@ -106,6 +105,16 @@ const router = new Router({
                 keepAlive: false,
                 // requireAuth: true, //登陆权限
 
+            }
+        },
+        {
+            name: 'login',
+            path: '/login',
+            component: _import('login/index'),
+            meta: {
+                title: '登陆',
+                keepAlive: false,
+                // requireAuth: true, //登陆权限
             }
         },
     ],

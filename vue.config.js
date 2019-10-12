@@ -87,7 +87,6 @@ module.exports = {
     },
 
     devServer: {
-        open: 'Google Chrome',
         // open: process.platform === 'darwin',
         // host: "localhost",
         port: 8888,
@@ -107,6 +106,13 @@ module.exports = {
                 changeOrigin: true,
                 pathRewrite:{
                     '^/movie':''
+                }
+            },
+            '/cinemas':{
+                target:'http://localhost:3000',
+                changeOrigin: true,
+                pathRewrite:{
+                    '^/cinemas':'/cinemas'
                 }
             },
         }
