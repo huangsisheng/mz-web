@@ -53,7 +53,7 @@ export default {
             errorFlag:false,
             countTime:60,
             timer:null,
-            eyeFlag:false
+            eyeFlag:true
         };
     },
     watch:{

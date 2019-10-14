@@ -128,6 +128,16 @@ const router = new Router({
                 // requireAuth: true, //登陆权限
             }
         },
+        {
+            name: 'setting',
+            path: '/setting',
+            component: _import('setting/index'),
+            meta: {
+                title: '设置',
+                keepAlive: false,
+                requireAuth: true, //登陆权限
+            }
+        },
         // { path: '*', redirect: '/404', hidden: true }
     ],
 
@@ -144,7 +154,7 @@ router.beforeEach((to, from, next) => {
     if(title){
         document.title = title
     }
-    if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.matched.some(record => record.meta.requireAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
         if (!store.state.user.token) {

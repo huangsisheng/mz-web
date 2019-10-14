@@ -35,6 +35,7 @@ const user = {
                     }else{
                         commit('SET_TOKEN', res.token)
                         resolve()
+                        router.back()
                     }
                 } catch (error) {
                     reject(error)
