@@ -1,17 +1,19 @@
-// import { getToken } from 'utils/auth'
+import { getToken } from 'utils/auth'
 import { showLoading, showToast} from 'utils/toast'
 import axios from 'axios'
+import router from "router"
 
 const http = axios.create({
     baseURL: '',
-    timeout: 30000
+    timeout: 5000
 })
   
-
 //添加请求拦截器
 http.interceptors.request.use((request)=>{
     //给所有请求添加自定义header
-    // request.headers["Authorization"] = getToken()
+    if (router.currentRoute.meta.requireAuth){
+        request.headers["Authorization"] = getToken()
+    }
       //打印出请求体
       //终止请求
       //var err=new Error("xxx")
@@ -33,14 +35,24 @@ http.interceptors.response.use(
     (error) => {
         showLoading()
         if (error.response) {
-            if (error.response.status === 400 || error.response.status === 401 || error.response.status === 403) {
+            if (error.response.status === 401 || error.response.status === 403) {
                 showToast(error.response.data.msg)
             }
             if (error.response.status === 500) {
                 showToast('服务器异常，请稍后再试')
             }
+            if (error.response.status === 400){
+                router.replace({ //跳转到登录页面
+                    path: '/login',
+                    query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                })
+            }
             return Promise.reject(error)
         } else {
+            /* router.replace({ //跳转到登录页面
+                path: '/login',
+                query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+            }) */
             return Promise.reject({
                 response: {
                     data: {

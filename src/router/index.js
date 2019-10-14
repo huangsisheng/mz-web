@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import _import from './_import'
+import store from "store";
 Vue.use(Router)
 
 const router = new Router({
@@ -117,13 +118,45 @@ const router = new Router({
                 // requireAuth: true, //登陆权限
             }
         },
+        {
+            name: 'register',
+            path: '/register',
+            component: _import('register/index'),
+            meta: {
+                title: '注册',
+                keepAlive: false,
+                // requireAuth: true, //登陆权限
+            }
+        },
+        // { path: '*', redirect: '/404', hidden: true }
     ],
+
     scrollBehavior(to, from, savedPosition) {
         setTimeout(() => {
             window.scrollTo(0, 0)
         }, 0)
         // 页面是内容是通过网络请求之后再渲染的,所以设置一个延时加载，等到网络请求完毕再调用滚动操作
         // return { x: 0, y: 0 }
+    }
+})
+router.beforeEach((to, from, next) => {
+    const title = to.meta.title
+    if(title){
+        document.title = title
+    }
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        // this route requires auth, check if logged in
+        // if not, redirect to login page.
+        if (!store.state.user.token) {
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath }
+            })
+        } else {
+            next()
+        }
+    } else {
+        next() // 确保一定要调用 next()
     }
 })
 export default router

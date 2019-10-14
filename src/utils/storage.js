@@ -1,15 +1,15 @@
 // 本地存储配置
-const localStorage = window.localStorage
+const storage = window.localStorage
 
 function set(key, value) {
     if (typeof value === 'object') {
         value = JSON.stringify(value)
     }
-    localStorage.setItem(key, value)
+    storage.setItem(key, value)
 }
 
 function get(key) {
-    const value = localStorage.getItem(key) || ''
+    const value = storage.getItem(key) || ''
 
     try {
         return JSON.parse(value)
@@ -19,11 +19,11 @@ function get(key) {
 }
 
 function remove(key) {
-    localStorage.removeItem(key)
+    storage.removeItem(key)
 }
 
 function clear() {
-    localStorage.clear()
+    storage.clear()
 }
 
 export default {

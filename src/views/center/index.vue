@@ -8,7 +8,7 @@
             fit="cover"
             :src="require('../../assets/images/avatar.png')"
             />
-            <div class="nick-name">立即登录</div>
+            <div class="nick-name" @click="login">立即登录</div>
         </div>
         <van-grid>
             <van-grid-item v-for="item in orderLinks" :key="item.key">
@@ -70,7 +70,11 @@ export default {
             ]
         };
     },
-    methods:{},
+    methods:{
+        login(){
+            this.$router.push('login')
+        }
+    },
 }
 </script>
 <style lang="stylus" scoped>

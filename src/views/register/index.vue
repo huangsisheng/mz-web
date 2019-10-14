@@ -15,26 +15,17 @@
                     @input="onInput(user.phone)"
                     maxlength="11"
                 >
-                    <!-- <span v-if="!timer" :class="{valiPass:valiPass}" class="vali-btn" slot="button" @click="getValidate">获取验证码</span> 
-                    <span v-else class="vali-btn" slot="button">{{countTime}}S</span> -->
                 </van-field>
                 <span v-if="errorFlag" class="error-message">请输入11位正确的手机号码</span>
-                <!-- <van-field
-                    v-model="user.password"
-                    placeholder="验证码"
-                /> -->
+                
                 <van-field
                     v-model="user.password"
-                    :type="eyeFlag ? 'password' : 'text'"
+                    type="password"
                     placeholder="密码"
-                    :right-icon="eyeFlag ? 'eye-o' : 'closed-eye'"
-                    @click-right-icon="eyeFlag = !eyeFlag"
                 />
-                <!-- closed-eye -->
             </van-cell-group>
-            <div class="not-egister" @click="toRegister">还没注册？去注册</div>
             <div class="login-submit">
-                <van-button :class="{passText:valiPass}" type="primary" size="large" @click="submit">登录</van-button>
+                <van-button :class="{passText:valiPass}" type="primary" size="large" @click="submit">注册</van-button>
             </div>
         </div>
     </section>
@@ -52,8 +43,7 @@ export default {
             valiPass:false,
             errorFlag:false,
             countTime:60,
-            timer:null,
-            eyeFlag:false
+            timer:null
         };
     },
     watch:{
@@ -66,7 +56,7 @@ export default {
         }
     },
     methods:{
-        ...mapActions(['login']),
+        ...mapActions(['register']),
         onFocus(){
             this.errorFlag = false
         },
@@ -80,14 +70,11 @@ export default {
                 }, 1000)
             }
         },
-        toRegister(){
-            this.$router.push('register')
-        },
         submit(){
             if(this.user.phone){
                 this.errorFlag = !this.valiPass
                 if(!this.errorFlag){
-                    this.login(this.user)
+                    this.register(this.user)
                 }
             }else{
                 this.errorFlag = false
@@ -130,12 +117,6 @@ export default {
     padding-left 0.426667rem
     font-size 11px
     color #ff5f16
-.not-egister
-    display inline-block
-    padding-top 7px
-    padding-left 0.426667rem
-    font-size 11px
-    color #bdc0c5
 
 .passText >>> .van-button__text
     opacity 1 !important

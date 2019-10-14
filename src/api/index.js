@@ -15,8 +15,13 @@ export const filmsDetails = () => {
     return http.get('/movie/filmsDetails')
 }
 
-
-
 export const cinemas = () => {
     return http.get('/cinemas')
+}
+
+export const login = (params) => {
+    return http.post('/api/login',params)
+}
+export const register = (params) => {
+    return http.post('/api/register',params)
 }

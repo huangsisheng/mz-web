@@ -1,27 +1,31 @@
 <template>
   <div id="app">
-    <transition :name="transitionName">
-      <keep-alive v-if="$route.meta.keepAlive">
-        <router-view class="child-view" />
-      </keep-alive>
-      <router-view v-else class="child-view" />
-    </transition>
-    <tab-bar v-if="show"></tab-bar>
+    <van-skeleton v-if="loading" title avatar :row="22" />
+    <div v-else>
+      <transition :name="transitionName">
+        <keep-alive v-if="$route.meta.keepAlive">
+          <router-view class="child-view" />
+        </keep-alive>
+        <router-view v-else class="child-view" />
+      </transition>
+      <tab-bar v-if="show"></tab-bar>
+    </div>
   </div>
 </template>
 <script>
 import TabBar from "components/tabbar";
 export default {
-  components:{TabBar},
+  components: { TabBar },
   data() {
     return {
       transitionName: "slide-left",
+      loading: true
     };
   },
-  computed:{
-      show(){
-           return this.$route.meta.showtabbar
-      }
+  computed: {
+    show() {
+      return this.$route.meta.showtabbar;
+    }
   },
   watch: {
     $route(to, from) {
@@ -31,6 +35,9 @@ export default {
         this.transitionName = "slide-right";
       }
     }
+  },
+  mounted() {
+    this.loading = false;
   }
 };
 </script>
@@ -54,5 +61,11 @@ export default {
   opacity: 0;
   -webkit-transform: translate3d(-30px, 0, 0);
   transform: translate3d(-30px, 0, 0);
+}
+#app /deep/ .van-skeleton__avatar {
+    background-color: pink;
+}
+#app /deep/ .van-skeleton__row, .van-skeleton__title {
+    background-color: pink;
 }
 </style>
