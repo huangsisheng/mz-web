@@ -32,7 +32,7 @@ export default {
                     toIcon:"tv-o"
                 },
                 {
-                    toPath:'/mz-act/active',
+                    toPath:'/mz-act',
                     toName:'咨询',
                     toIcon:"comment-o"
                 },

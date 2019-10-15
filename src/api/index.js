@@ -18,6 +18,12 @@ export const filmsDetails = () => {
 export const cinemas = () => {
     return http.get('/cinemas')
 }
+export const act = () => {
+    return http.get('/act')
+}
+export const banner = () => {
+    return http.get('/banner')
+}
 
 export const login = (params) => {
     return http.post('/api/login',params)

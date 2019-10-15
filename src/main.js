@@ -45,6 +45,8 @@ Date.prototype.format = function (fmt) { //author: meizz
     return fmt;
 }
 
+// import vConsole from "utils/vconsole";
+
 Vue.config.productionTip = false
 new Vue({
     router,

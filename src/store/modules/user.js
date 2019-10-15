@@ -1,22 +1,27 @@
 import * as types from "../mutation_types";
-import { removeToken,setToken } from "utils/auth";
+import { removeToken,setToken,getToken } from "utils/auth";
 import storage from "utils/storage";
 import { login,register} from 'api'
 import { showToast} from 'utils/toast'
 import router from 'router'
+import { encryption } from "utils/crypto";
 
 const user = {
     state:{
-        token:''
+        // 防止刷新页面重新登录
+        token: getToken('token')
     },
     mutations:{
         [types.SET_TOKEN]: (state,token) => {
             state.token = token
             setToken(token)
         },
-        [types.REMOVE_TOKEN]: (state,token) => {
-            state.token = token
+        [types.REMOVE_TOKEN]: (state) => {
+            state.token = ''
             removeToken('token')
+            router.replace({
+                path: '/'
+            })
         },
     },
     actions:{
@@ -24,9 +29,16 @@ const user = {
         login({commit},payload){
             return new Promise(async (resolve,reject) => {
                 try {
+                    var userInfo = { password: payload.password }
+                    const encryptData = encryption({
+                        data: userInfo,
+                        key: '1234567887654321',
+                        param: ['password']
+                    })
                     let params = {
                         name: payload.phone,
-                        pass: payload.password
+                        pass: encryptData.password,
+                        grant_type:'password'
                     }
                     const res = await login(params)
                     
@@ -43,18 +55,28 @@ const user = {
             })
         },
         // 注册
-        register({commit},payload){
+        register(payload){
             return new Promise(async (resolve,reject) => {
                 try {
+                    var userInfo = { password: payload.password }
+                    const encryptData = encryption({
+                        data: userInfo,
+                        key: '1234567887654321',
+                        param: ['password']
+                    })
                     let params = {
                         name: payload.phone,
-                        pass: payload.password
+                        pass: encryptData.password,
+                        grant_type: 'password'
                     }
+                    /* let params = {
+                        name: payload.phone,
+                        pass: payload.password
+                    } */
                     const res = await register(params)
                     if (!res.success){
                         showToast(res.msg)
                     }else{
-                        commit('SET_TOKEN', token)
                         resolve()
                     }
                     router.replace({ //跳转到登录页面
@@ -70,7 +92,7 @@ const user = {
         logout({commit}){
             return new Promise((resolve, reject) => {
                 try {
-                    commit('REMOVE_TOKEN',token)
+                    commit('REMOVE_TOKEN')
                     resolve()
                 } catch (error) {
                     reject(error)
