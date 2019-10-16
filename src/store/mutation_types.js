@@ -18,6 +18,7 @@ export const SET_AMOUNTCOUNT = 'SET_AMOUNTCOUNT'
 export const SET_CORP = 'SET_CORP'
 export const SET_PERMISSIONS = 'SET_PERMISSIONS'
 export const REMOVE_TOKEN = 'REMOVE_TOKEN'
+export const RESET_PASS = 'RESET_PASS'
 
 // permission
 export const SET_ROUTERS = 'SET_ROUTERS'

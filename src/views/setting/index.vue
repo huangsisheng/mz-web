@@ -1,7 +1,7 @@
 <template>
     <section class="">
         <van-nav-bar
-            title="标题"
+            :title="$route.meta.title"
             left-arrow
             @click-left="onClickLeft"
         />
@@ -9,12 +9,12 @@
             <van-cell title="账号ID" value="117309564" />
         </van-cell-group>
         <van-cell-group>
-            <van-cell title="登录密码" is-link value="修改" />
+            <van-cell title="登录密码" is-link value="修改" to="/user/reset-password"/>
             <van-cell title="安全密码" is-link value="未设置" />
         </van-cell-group>
         <van-cell-group>
             <van-cell title="软件版本" is-link />
-            <van-cell title="意见反馈" is-link />
+            <van-cell title="意见反馈" is-link to="/setting/suggest"/>
         </van-cell-group>
         <van-cell-group>
             <van-cell @click="showClear" title="清楚缓存" value="0.1KB" />
@@ -33,6 +33,7 @@
             </ul>
             <div class="pop-bottom" @click="cancel">取消</div>
         </van-popup>
+        <router-view />
     </section>
 </template>
 <script>
@@ -67,10 +68,7 @@ export default {
         },
         quitAndclear(){
             if(this.isQuite){
-                this.logout()
-                
-            }else{
-
+                this.logout()                
             }
         }
     },

@@ -31,3 +31,9 @@ export const login = (params) => {
 export const register = (params) => {
     return http.post('/api/register',params)
 }
+export const reset = (params) => {
+    return http.post('/api/reset',params)
+}
+export const suggest = (params) => {
+    return http.post('/api/suggest',params)
+}

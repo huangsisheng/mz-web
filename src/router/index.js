@@ -12,6 +12,7 @@ const router = new Router({
             component: _import('films/index'),
             redirect:'/films'
         },
+        // 电影
         {
             name:'films',
             path:'/films',
@@ -97,6 +98,28 @@ const router = new Router({
 
             }
         },
+        // 用户
+        {
+            name: 'user',
+            path: '/user',
+            component: _import('user/index'),
+            meta: {
+                keepAlive: false,
+                requireAuth: true, //登陆权限
+            },
+            children:[
+                {
+                    name: 'reset-password',
+                    path: 'reset-password',
+                    component: _import('user/reset-password'),
+                    meta: {
+                        title: '重置密码',
+                        keepAlive: false,
+                        requireAuth: true, //登陆权限
+                    },
+                }
+            ]
+        },
         {
             name: 'city',
             path: '/city',
@@ -136,7 +159,18 @@ const router = new Router({
                 title: '设置',
                 keepAlive: false,
                 requireAuth: true, //登陆权限
-            }
+            },
+            children:[
+                {
+                    name:'suggest',
+                    path:'suggest',
+                    component: _import('setting/suggest'),
+                    meta:{
+                        title:'意见反馈',
+                        requireAuth:true
+                    }
+                }
+            ]
         },
         // { path: '*', redirect: '/404', hidden: true }
     ],

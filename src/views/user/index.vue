@@ -1,5 +1,7 @@
 <template>
-    <section class=""></section>
+    <section class="">
+        <router-view />
+    </section>
 </template>
 <script>
 export default {
