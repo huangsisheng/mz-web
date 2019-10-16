@@ -54,7 +54,7 @@ const user = {
                     if (!res.success){
                         showToast(res.msg)
                     }else{
-                        commit('SET_TOKEN', token)
+                        commit('SET_TOKEN', res.token)
                         resolve()
                     }
                     router.replace({ //跳转到登录页面
