@@ -18,10 +18,22 @@ export const filmsDetails = () => {
 export const cinemas = () => {
     return http.get('/cinemas')
 }
+export const act = () => {
+    return http.get('/act')
+}
+export const banner = () => {
+    return http.get('/banner')
+}
 
 export const login = (params) => {
     return http.post('/api/login',params)
 }
 export const register = (params) => {
     return http.post('/api/register',params)
+}
+export const reset = (params) => {
+    return http.post('/api/reset',params)
+}
+export const suggest = (params) => {
+    return http.post('/api/suggest',params)
 }

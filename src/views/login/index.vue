@@ -25,7 +25,7 @@
                 /> -->
                 <van-field
                     v-model="user.password"
-                    :type="eyeFlag ? 'password' : 'text'"
+                    :type="eyeFlag ? 'text' : 'password'"
                     placeholder="密码"
                     :right-icon="eyeFlag ? 'eye-o' : 'closed-eye'"
                     @click-right-icon="eyeFlag = !eyeFlag"
@@ -53,7 +53,7 @@ export default {
             errorFlag:false,
             countTime:60,
             timer:null,
-            eyeFlag:true
+            eyeFlag:false
         };
     },
     watch:{
@@ -86,7 +86,7 @@ export default {
         submit(){
             if(this.user.phone){
                 this.errorFlag = !this.valiPass
-                if(!this.errorFlag){
+                if(!this.errorFlag && this.user.password){
                     this.login(this.user)
                 }
             }else{

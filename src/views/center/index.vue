@@ -8,7 +8,8 @@
             fit="cover"
             :src="require('../../assets/images/avatar.png')"
             />
-            <div class="nick-name" @click="login">立即登录</div>
+            <div v-if="username" class="nick-name">{{username | dimUsername}}</div>
+            <div v-else class="nick-name" @click="login">立即登录</div>
         </div>
         <van-grid>
             <van-grid-item v-for="item in orderLinks" :key="item.key">
@@ -30,6 +31,7 @@
     </section>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
     data () {
         return {
@@ -67,8 +69,18 @@ export default {
                     toPage:'/setting',
                     icon:''
                 },
+                {
+                    title:'地图',
+                    toPage:'/amap',
+                    icon:''
+                }
             ]
         };
+    },
+    computed:{
+        ...mapState({
+            username: state => state.user.username
+        })
     },
     methods:{
         login(){

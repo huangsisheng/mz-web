@@ -115,6 +115,20 @@ module.exports = {
                     '^/cinemas':'/cinemas'
                 }
             },
+            '/act':{
+                target:'http://localhost:3000',
+                changeOrigin: true,
+                pathRewrite:{
+                    '^/act':'/act'
+                }
+            },
+            '/banner':{
+                target:'http://localhost:3000',
+                changeOrigin: true,
+                pathRewrite:{
+                    '^/banner':'/banner'
+                }
+            },
             '/api':{
                 target:'http://localhost:3000',
                 changeOrigin: true

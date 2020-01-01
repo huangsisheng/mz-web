@@ -2,7 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from 'router'
 import store from 'store'
-
+import myPlugin from "./pluging";
+Vue.use(myPlugin, {
+    store
+})
 // 引入全局样式
 import "@/assets/css/index"
 
@@ -44,6 +47,19 @@ Date.prototype.format = function (fmt) { //author: meizz
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+// import vConsole from "utils/vconsole";
+
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap);
+VueAMap.initAMapApiLoader({
+    // 高德的key
+    key: '8120b756a0a5a0cc9a543412fc5b2613',
+    // 插件集合
+    plugin: ['AMap.Geocoder', 'AMap.Geolocation', 'AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+    uiVersion: '1.0', // ui库版本版本
+    v: '1.4.15'  //扩展更多高德原生方法
+});
 
 Vue.config.productionTip = false
 new Vue({

@@ -2,7 +2,12 @@
   <section class="movie" @touchmove="moveHandler">
       <div>
         <Nav></Nav>
-        <van-tabs sticky v-model="active" @click="togglePage">
+        <van-swipe style="height: 250px;" :autoplay="3000" indicator-color="white">
+            <van-swipe-item v-for="item in bannerList" :key="item.bannerId">
+                <img :src="item.imgUrl" alt="">
+            </van-swipe-item>
+        </van-swipe>
+        <van-tabs sticky v-model="active" swipeable @click="togglePage">
             <van-tab v-for="item in links" :key="item.toName" :title="item.title">
                 <router-view></router-view>
             </van-tab>
@@ -14,6 +19,7 @@
 <script>
 import Nav from "components/nav";
 import GoTop from "directive/goTop";
+import { banner } from "api";
 export default {
   components:{Nav,GoTop},
   data() {
@@ -32,10 +38,12 @@ export default {
       defaultScroll:150,
       showObj:{
           value:false
-      } 
+      },
+      bannerList:[] 
     };
   },
   mounted() {
+    this.banner()
     this.$bus.$on("changePage", () => {
       if (this.active === 1) {
         this.active = 0;
@@ -62,6 +70,10 @@ export default {
       } else {
         this.$router.push("nowPlaying");
       }
+    },
+    async banner(){
+        const {data} = await banner()
+        this.bannerList = data
     }
   }
 };
