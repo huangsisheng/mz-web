@@ -1,5 +1,5 @@
 <template>
-  <section class="movie" @touchmove="moveHandler">
+  <section class="movie">
       <div>
         <Nav></Nav>
         <van-swipe style="height: 250px;" :autoplay="3000" indicator-color="white">
@@ -57,13 +57,6 @@ export default {
     });
   },
   methods: {
-      moveHandler(){
-          /* window.addEventListener('scroll',() => {
-              if(window.scrollY > this.defaultScroll){
-                  
-              }
-          }) */
-      },
     togglePage() {
       if (this.$route.name === "nowPlaying") {
         this.$router.push("comingSoon");

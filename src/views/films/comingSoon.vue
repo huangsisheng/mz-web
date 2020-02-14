@@ -47,7 +47,6 @@ export default {
     async getComingSoon(){
         const {data} = await comingSoon()
         this.filmsList = data.films
-        this.filmsList = data.films
         this.loading = false;
         if (this.filmsList.length >= 10) {
           this.finished = true;

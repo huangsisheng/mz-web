@@ -51,13 +51,17 @@ const user = {
                     
                     if (res.code !== 0){
                         showToast(res.msg)
+                        router.replace({ //跳转到注册页面
+                            path: '/register',
+                            query: { redirect: router.currentRoute.fullPath } 
+                        })
                     }else{
                         commit('SET_TOKEN', { token: res.token, username:res.username})
                         storage.set('user', res.username)
                         resolve()
-                        router.replace({ //跳转到登录页面
+                        router.replace({ //跳转到首页
                             path: '/',
-                            query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                            query: { redirect: router.currentRoute.fullPath }
                         })
                     }
                 } catch (error) {
