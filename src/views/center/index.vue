@@ -73,6 +73,11 @@ export default {
                     title:'地图',
                     toPage:'/amap',
                     icon:''
+                },
+                {
+                    title:'我的自定义表单',
+                    toPage:'/myform',
+                    icon:''
                 }
             ]
         };

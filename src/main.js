@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from 'router'
 import store from 'store'
+import VueAMap from 'vue-amap';
+import myPlugin from "./pluging";
 
 // 引入全局样式
 import "@/assets/css/index"
@@ -17,12 +19,15 @@ globalDirective()
 import globalFilter from "filter"
 globalFilter()
 
-const VueEventBus = require('vue-event-bus')
-Vue.use(VueEventBus)
+/* const VueEventBus = require('vue-event-bus')
+Vue.use(VueEventBus) */
+
 
 import Vant from 'vant'
 import 'vant/lib/index.css'
-Vue.use(Vant)
+import create from "@/pluging/create";
+
+
 
 import dayjs from 'dayjs' //全局引用dayjs
 window.dayjs = dayjs
@@ -47,8 +52,6 @@ Date.prototype.format = function (fmt) { //author: meizz
 
 // import vConsole from "utils/vconsole";
 
-import VueAMap from 'vue-amap';
-Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
     // 高德的key
     key: '8120b756a0a5a0cc9a543412fc5b2613',
@@ -57,7 +60,9 @@ VueAMap.initAMapApiLoader({
     uiVersion: '1.0', // ui库版本版本
     v: '1.4.15'  //扩展更多高德原生方法
 });
-import myPlugin from "./pluging";
+Vue.use(Vant)
+Vue.use(VueAMap);
+Vue.prototype.$create = create;
 Vue.use(myPlugin, {
     store
 })

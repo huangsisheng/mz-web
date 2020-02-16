@@ -180,6 +180,15 @@ const router = new Router({
                 title:'地图',
                 showtabbar: true
             }
+        },
+        {
+            name:'myform',
+            path:'/myform',
+            component: _import('myform/index'),
+            meta:{
+                title:'我的自定义表单',
+                showtabbar: true
+            }
         }
         // { path: '*', redirect: '/404', hidden: true }
     ],
