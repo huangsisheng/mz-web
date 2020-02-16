@@ -16,6 +16,10 @@
 import TabBar from "components/tabbar";
 export default {
   components: { TabBar },
+    //   注入 方法/数据
+  provide:{
+      bigp:`it's bigp`
+  },
   data() {
     return {
       transitionName: "slide-left",

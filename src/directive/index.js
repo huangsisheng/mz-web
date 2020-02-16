@@ -3,6 +3,7 @@ import  Vue from "vue";
 const globalDirective = () => {
     Vue.directive('scroll-show', {
         inserted(el, binding) {
+            console.log(binding)
             let scope = binding.arg || '200';
             window.addEventListener('scroll', function (e) {
                 binding.value.value = this.scrollY > Number(scope) ? true : false

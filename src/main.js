@@ -2,10 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from 'router'
 import store from 'store'
-import myPlugin from "./pluging";
-Vue.use(myPlugin, {
-    store
-})
+
 // 引入全局样式
 import "@/assets/css/index"
 
@@ -60,7 +57,10 @@ VueAMap.initAMapApiLoader({
     uiVersion: '1.0', // ui库版本版本
     v: '1.4.15'  //扩展更多高德原生方法
 });
-
+import myPlugin from "./pluging";
+Vue.use(myPlugin, {
+    store
+})
 Vue.config.productionTip = false
 new Vue({
     router,

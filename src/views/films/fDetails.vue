@@ -75,7 +75,7 @@
 import { filmsDetails } from "api";
 import { ImagePreview } from 'vant'
 export default {
-    components:{},
+    name:"filmDetail",
     data () {
         return {
             scrollFlag:false,
@@ -109,7 +109,9 @@ export default {
         },
         movePage(){
             window.addEventListener('scroll',() => {
-                this.scrollFlag = window.scrollY > 100 ? true : false
+                setTimeout(() => {
+                    this.scrollFlag = window.scrollY > 100 ? true : false
+                }, 1000);
             })
         },
         onClickLeft(){
