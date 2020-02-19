@@ -69,9 +69,7 @@ export default {
       }, 500);
     },
     toFDetails(item){
-        this.$router.push({
-            path:'/films/fDetails'
-        })
+        this.$router.push('/films/fDetails')
     }
   }
 }

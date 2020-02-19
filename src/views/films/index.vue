@@ -56,6 +56,9 @@ export default {
       }
     });
   },
+  beforeUpdate(to,from,next){  //响应路由变化
+      console.log('gigigg')
+  },
   methods: {
     togglePage() {
       if (this.$route.name === "nowPlaying") {

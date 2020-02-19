@@ -54,7 +54,7 @@ const router = new Router({
         },
         {
             name: 'fDetails',
-            path: '/films/fDetails',
+            path: '/films/fDetails',  //匹配模式
             component: _import('films/fDetails'),
             meta: {
                 title: '电影详情',
@@ -181,15 +181,7 @@ const router = new Router({
                 showtabbar: true
             }
         },
-        {
-            name:'myform',
-            path:'/myform',
-            component: _import('myform/index'),
-            meta:{
-                title:'我的自定义表单',
-                showtabbar: true
-            }
-        }
+        
         // { path: '*', redirect: '/404', hidden: true }
     ],
 
@@ -201,11 +193,29 @@ const router = new Router({
         // return { x: 0, y: 0 }
     }
 })
+
+// addRoutes
+
+const activeRoute = [
+    {
+        name: 'myform',
+        path: '/myform',
+        component: _import('myform/index'),
+        meta: {
+            title: '我的自定义表单',
+            showtabbar: true
+        }
+    }
+]
+
 router.beforeEach((to, from, next) => {
     const title = to.meta.title
     if(title){
         document.title = title
     }
+
+    
+    // matched：包含当前路由的所有嵌套路径片段的路由记录，还可用于面包屑效果
     if (to.matched.some(record => record.meta.requireAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
@@ -215,6 +225,8 @@ router.beforeEach((to, from, next) => {
                 query: { redirect: to.fullPath }
             })
         } else {
+            // 添加动态路由，获取服务端返回的数据，用于权限控制
+            router.addRoutes(activeRoute)
             next()
         }
     } else {

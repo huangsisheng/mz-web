@@ -85,6 +85,7 @@ export default {
         };
     },
     created(){
+        console.log(this.$route.params)
         this.getFilmsDetail()
     },
     methods:{
@@ -111,7 +112,7 @@ export default {
             window.addEventListener('scroll',() => {
                 setTimeout(() => {
                     this.scrollFlag = window.scrollY > 100 ? true : false
-                }, 1000);
+                }, 100);
             })
         },
         onClickLeft(){

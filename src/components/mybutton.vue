@@ -1,7 +1,7 @@
 <script>
 export default {
     /* 根据组件化思想，当有很多类似的按钮（具体例子而已），模板渲染就会产生大量相同的代码
-     所以可以使用render函数来优化重复代码量*/
+     所以可以使用render函数来优化重复代码*/
     props:{
         btnType:{
             type:String,

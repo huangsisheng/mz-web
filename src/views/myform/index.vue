@@ -34,9 +34,18 @@ export default {
             }
         };
     },
+    beforeRouteLeave (to,from,next){
+        if(!this.mode.username){
+            alert('请输入用户名')
+            next(false)
+        }else{
+            next()
+        }
+    },
     methods: {
         submitForm(form) {
             this.$refs[form].validate(valid => {
+                console.log(valid)
                 const notice = this.$create(Notice, {
                 title: "社会你杨哥喊你来搬砖",
                 message: valid ? "请求登录!" : "校验失败!",
@@ -45,7 +54,7 @@ export default {
                 notice.show();
             });
         }
-    },
+    }
 };
 </script>
 
