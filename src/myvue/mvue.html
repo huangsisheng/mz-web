@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试代码</title>
+    <script src="mvue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const app = new MVue({
+            data:{
+                msg:'hello',
+                test:'world',
+                test2:{
+                    w:'world'
+                }
+            }
+        })
+        console.log(app)
+        // app.$data.msg = 'hahaha'
+        app.msg = 'hahaha'
+        app.test = 'asaa'
+        document.getElementById('app').innerText = app.msg
+    </script>
+</body>
+</html>
