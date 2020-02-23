@@ -12,6 +12,12 @@ class MVue{
 
         new Watcher(this, 'test')
         this.test;
+
+        new Compile(options.el,this)
+
+        if (options.created){
+            options.created()
+        }
     }
     // 递归遍历，使传递进来的对象响应化
     observe(value){
@@ -55,6 +61,7 @@ class MVue{
             get() {
                 return this.$data[key];
             },
+     
             set(newVal) {
                 this.$data[key] = newVal;
             }
@@ -82,6 +89,8 @@ class Dep{
     notify(){
         // dep通知watcher更新
         this.deps.forEach(watcher => {
+            console.log(watcher)
+
             watcher.update()
         })
     }
@@ -89,17 +98,22 @@ class Dep{
 
 // 保存ui中依赖，实现update函数更新之
 class Watcher{
-    constructor(vm,key){
+    constructor(vm,key,cb){
         this.vm = vm
-        
         this.key = key
+        this.cb = cb
         // 将当前实例指向Dep.target
         Dep.target = this
+        this.vm[this.key] //读一次key触发一次getter
+        Dep.target = null //清空
     }
-
+    
     // 做dom操作
     update(){
-        console.log(`${this.key}：属性更新啦啦啦！！！`)
+
+        // 需要指向当前实例
+        this.cb.call(this.vm, this.vm[this.key])
+        // console.log(`${this.key}：属性更新啦啦啦！！！`)
     }
 
 }

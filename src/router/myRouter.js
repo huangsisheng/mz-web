@@ -39,7 +39,7 @@ class Myrouter {
     }
 
     onHashChange(){
-        // 捕捉当前当前页面的hash
+        // 捕捉当前页面的hash
         this.app.current = window.location.hash.slice(1) || '/'
     }
 
