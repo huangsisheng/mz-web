@@ -17,6 +17,8 @@ function addStyleResource(rule) {
             ],
         })
 }
+//
+
 module.exports = {
     publicPath: './',
     baseUrl: process.env.baseUrl,
@@ -53,12 +55,25 @@ module.exports = {
             .add('.vue')
             .add('.styl')
             .add('.css')
-
-        config.module.rule('svg').uses.clear()
+        /* svg,icon  start*/
+        // svg配置，排除icons目录
+        config.module.rule('svg')
+            .exclude.add(resolve('src/icons'))
+        //新增icons配置
+        config.module.rule('svg-sprite-loader')
+            .test(/\.svg$/)
+            .include.add(resolve('src/icons'))      //只包含这个目录
+            .end()
+            .use('svg-sprite-loader')
+            .loader('svg-sprite-loader')
+            .options({symbolId:'icon-[name]'})  //以什么方式使用icon
+            .end()
+        /* svg,icon  end*/
+        /* config.module.rule('svg').uses.clear()
         config.module
             .rule('svg')
             .use('raw-loader')
-            .loader('raw-loader')
+            .loader('raw-loader') */
         // config.module.rule('url')
         //   .test(/\.(eot|svg|ttf|woff|woff2?)(\?.*)?$/)
         //   .use('url')

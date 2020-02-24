@@ -6,6 +6,8 @@ import router from 'router/myRouter'
 import store from 'store/myStore'
 import VueAMap from 'vue-amap';
 import myPlugin from "./pluging";
+// 全局使用icons
+import './icons'
 
 // 引入全局样式
 import "@/assets/css/index"
