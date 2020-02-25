@@ -9,5 +9,4 @@ Vue.component('svg-icon', SvgIcon)
 // require.context：引入svg上下文  false:不会再有嵌套层级
 const req = require.context('./svg', false, /\.svg$/)
 // [qq.svg,weixin/svg]
-// 添加测试代码
 req.keys().map(req)
