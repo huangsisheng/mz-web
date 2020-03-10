@@ -10,7 +10,7 @@
         <router-view v-else class="child-view" />
       </transition>
       <tab-bar v-if="show"></tab-bar>
-    </div> -->
+    </div> -->{{h}}
   </div>
 </template>
 <script>
@@ -42,6 +42,7 @@ export default {
     }
   },
   mounted() {
+    console.log(process)
     console.log(this.$options)  
     this.loading = false;
   }

@@ -77,7 +77,7 @@ module.exports = {
         // config.module.rule('url')
         //   .test(/\.(eot|svg|ttf|woff|woff2?)(\?.*)?$/)
         //   .use('url')
-        //     .loader('url-loader')
+        //     .loader('ur
         //     .end()
 
         //config.when(isProduction, config =>
