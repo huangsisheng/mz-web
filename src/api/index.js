@@ -6,13 +6,13 @@ export const gateway = () => {
 }
 
 export const nowPlaying = () => {
-    return http.get('/movie/nowPlaying')
+    return http.get('/nowPlaying')
 }
 export const comingSoon = () => {
-    return http.get('/movie/comingSoon')
+    return http.get('/comingSoon')
 }
 export const filmsDetails = () => {
-    return http.get('/movie/filmsDetails')
+    return http.get('/filmsDetails')
 }
 
 export const cinemas = () => {

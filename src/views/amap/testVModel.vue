@@ -10,11 +10,17 @@ export default {
         prop: 'tval',
         event: 'inputV'
     },
-    props:{'tval':String},
+    props:{
+        'tval':String,
+        testVal:Function
+    },
     data() {
         return {
             // tval:'1213'
         };
+    },
+    created(){
+        console.log(this)
     },
     methods: {
         inputVal(e){

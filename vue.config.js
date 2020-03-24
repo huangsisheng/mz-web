@@ -109,7 +109,14 @@ module.exports = {
         hotOnly: false,
         // 当没有需要代理的内容时 需将其注释
         proxy:{
-            '/gateway':{
+            [process.env.VUE_APP_BASE_API]:{
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+                pathRewrite: {
+                    ['^'+process.env.VUE_APP_BASE_API]:''
+                }
+            },
+            /* '/gateway':{
                 target:'http://localhost:3000',
                 changeOrigin: true,
                 pathRewrite:{
@@ -147,7 +154,7 @@ module.exports = {
             '/api':{
                 target:'http://localhost:3000',
                 changeOrigin: true
-            },
+            }, */
         }
     },
 }

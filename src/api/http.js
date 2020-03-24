@@ -4,7 +4,7 @@ import axios from 'axios'
 import router from "router"
 
 const http = axios.create({
-    baseURL: '',
+    baseURL: process.env.VUE_APP_BASE_API,
     timeout: 5000
 })
   

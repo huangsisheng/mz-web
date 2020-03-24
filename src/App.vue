@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-      <router-view></router-view>
-    <!-- <van-skeleton v-if="loading" title avatar :row="22" />
+      <!-- <router-view></router-view> -->
+    <van-skeleton v-if="loading" title avatar :row="22" />
     <div v-else>
       <transition :name="transitionName">
         <keep-alive v-if="$route.meta.keepAlive">
@@ -10,7 +10,8 @@
         <router-view v-else class="child-view" />
       </transition>
       <tab-bar v-if="show"></tab-bar>
-    </div> -->{{h}}
+    </div>
+    <!-- {{h}} -->
   </div>
 </template>
 <script>
