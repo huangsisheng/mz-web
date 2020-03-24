@@ -2,7 +2,7 @@
     <div id="toTop">
         <transition name="fade">
             <div class="btn" v-show="isShow">
-                <img src="../../assets/icons/BackToTop.png" alt="">
+                <img src="../../assets/icons/BackToTop.png" alt="回到顶部">
             </div>
         </transition>
     </div>

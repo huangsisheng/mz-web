@@ -18,10 +18,9 @@
 </template>
 <script>
 import Nav from "components/nav";
-import GoTop from "directive/goTop";
 import { banner } from "api";
 export default {
-  components:{Nav,GoTop},
+  components:{Nav},
   data() {
     return {
       active: 0,

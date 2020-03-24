@@ -22,6 +22,8 @@ globalDirective()
 // 引入全局过滤器
 import globalFilter from "filter"
 globalFilter()
+import GoTop from "directive/goTop/index";
+Vue.component('go-top', GoTop)
 
 /* const VueEventBus = require('vue-event-bus')
 Vue.use(VueEventBus) */
