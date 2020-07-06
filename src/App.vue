@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-      <!-- <router-view></router-view> -->
-    <van-skeleton v-if="loading" title avatar :row="22" />
+      <router-view></router-view>
+    <!-- <van-skeleton v-if="loading" title avatar :row="22" />
     <div v-else>
       <transition :name="transitionName">
         <keep-alive v-if="$route.meta.keepAlive">
@@ -10,12 +10,13 @@
         <router-view v-else class="child-view" />
       </transition>
       <tab-bar v-if="show"></tab-bar>
-    </div>
+    </div> -->
     <!-- {{h}} -->
   </div>
 </template>
 <script>
 import TabBar from "components/tabbar";
+import config from "@/utils/config";
 export default {
   components: { TabBar },
     //   注入 方法/数据
@@ -43,7 +44,7 @@ export default {
     }
   },
   mounted() {
-    console.log(process)
+    console.log(config,process.env)
     console.log(this.$options)  
     this.loading = false;
   }
