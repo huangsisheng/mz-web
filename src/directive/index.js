@@ -28,5 +28,7 @@ const globalDirective = () => {
             })
         }
     })
+
+    
 }
 export default globalDirective

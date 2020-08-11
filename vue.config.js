@@ -1,7 +1,7 @@
 // 配置文件
 const path = require('path')
 const isProduction = process.env.NODE_ENV === 'production' ? true : false
-//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 function resolve (dir) {
     return path.join(__dirname, dir)
@@ -80,9 +80,13 @@ module.exports = {
         //     .loader('ur
         //     .end()
 
-        //config.when(isProduction, config =>
-        //  config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin)
-        //)
+        config.when(isProduction, config =>
+         config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin({
+             analyzerMode:'disabled',
+             generateStatsFileL:true,
+             statsOptions:{source:false}
+         }))
+        )
     },
     // 打包为生产环境时不生成map.js文件
     productionSourceMap: !isProduction,
