@@ -1,7 +1,34 @@
 // 配置文件
 const path = require('path')
 const isProduction = process.env.NODE_ENV === 'production' ? true : false
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+// 开发环境是否需要cdn
+const devNeedCdn = true
+
+// cdn链接
+const cdn = {
+    // cdn：模块名称和模块作用域命名（对应window里面挂载的变量名称）
+    externals:{
+        vue: 'Vue'
+    },
+    // cdn的css链接
+    css: [
+        'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css'
+    ],
+    // cdn的js链接
+    js: [
+        'https://cdn.jsdelivr.net/npm/vue/dist/vue.js'
+        /*'https://cdn.bootcss.com/vue/2.6.10/vue.min.js',
+         'https://cdn.bootcss.com/vuex/3.1.2/vuex.min.js',
+        'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js',
+        'https://cdn.bootcss.com/marked/0.8.0/marked.min.js',
+        'https://cdn.bootcss.com/highlight.js/9.18.1/highlight.min.js',
+        'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js',
+        'https://cdn.bootcss.com/axios/0.19.2/axios.min.js' */
+    ]
+
+}
 
 function resolve (dir) {
     return path.join(__dirname, dir)
@@ -29,8 +56,13 @@ module.exports = {
     configureWebpack: config => {
         if (isProduction) {
             // 为生产环境修改配置...
+            
         } else {
             // 为开发环境修改配置...
+        }
+        // 用cdn方式引入，则构建时要忽略相关资源
+        if (isProduction || devNeedCdn) {
+            config.externals = cdn.externals
         }
     },
     chainWebpack: config => {
@@ -80,13 +112,20 @@ module.exports = {
         //     .loader('ur
         //     .end()
 
-        config.when(isProduction, config =>
+        /* config.when(isProduction, config =>
          config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin({
              analyzerMode:'disabled',
              generateStatsFileL:true,
              statsOptions:{source:false}
          }))
-        )
+        ) */
+        // ============= 注入cdn ==============
+        config.plugin('html').tap(args => {
+            if (isProduction || devNeedCdn) {
+                args[0].cdn = cdn
+            }
+            return args
+        })
     },
     // 打包为生产环境时不生成map.js文件
     productionSourceMap: !isProduction,

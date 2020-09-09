@@ -43,9 +43,11 @@ export default {
       }
     }
   },
+  created(){
+      throw new Error('阻塞')
+  },
   mounted() {
     console.log(config,process.env)
-    console.log(this.$options)  
     this.loading = false;
   }
 };
